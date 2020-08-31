@@ -1,0 +1,15 @@
+{
+  "name": "List Active Directory Admin Users",
+  "description": "Find all users who belong to the default Active Directory admin groups",
+  "hosts": ["local"],
+  "functions": {
+    "run": {
+      "command": "Get-ADGroupMember -Identity Administrators -Recursive | Select Name",
+      "method": "invoke",
+      "json": true,
+      "result": {
+        "label": "Name"
+      }
+    }
+  }
+}
