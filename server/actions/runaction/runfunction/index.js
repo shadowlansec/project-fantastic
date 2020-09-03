@@ -2,12 +2,13 @@ const PwshFunction = require('../../../util/pwshfunction')
 const ProcessJSON = require('../../../util/processjson')
 const ProcessJSONObject = require('../../../util/processjsonobject')
 const HasRole = require('fantastic-utils/hasrole')
+const IsValid = require('fantastic-utils/isvalid')
 
 const result = (result_data, output, action, user) => {
   if (Array.isArray(result_data)) return result_data.map(v => result(v, output, action, user))
   return {
     label: ProcessJSON(result_data.label, output),
-    data: result_data.data && result_data.data.map(v => ProcessJSON(v, output)),
+    data: result_data.data && result_data.data.map(v => ProcessJSON(v, output)).filter(IsValid),
     followups: result_data.followups && result_data.followups.reduce((result, v) => {
       const followup_func = action.functions[v.function]
       const permitted = !followup_func.role || HasRole(user, followup_func.role)
@@ -28,7 +29,7 @@ const result = (result_data, output, action, user) => {
 const process_results = results => {
   results = results.flat()
   for (let i = 0; i < results.length;) {
-    if (results.find((v, j) => j !== i && v.label === results[i].label)) results.splice(i, 1)
+    if (typeof results[i].label === 'undefined' || results.find((v, j) => j !== i && v.label === results[i].label)) results.splice(i, 1)
     else i++
   }
   return results
