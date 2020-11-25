@@ -15,7 +15,7 @@ const modules = [
 ]
 const auth_modules = [
   '@infosecinnovations/fantastic-default_auth',
-  '@infosecinnovations/fantastic-active_directory'
+  '@infosecinnovations/fantastic-active_directory_auth'
 ]
 
 const run = async () => {
