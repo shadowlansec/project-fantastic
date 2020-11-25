@@ -2,15 +2,16 @@ import {h} from 'snabbdom/h'
 import TestEntry from '../testentry'
 import Parameter from './parameter'
 import SearchBar from '../../../../common/view/searchbar'
+import FilterSearchResults from '../../../../common/util/filtersearchresults'
 
 export default (state, send) => {
-  const tests = state.flex_search.tests.query && state.flex_search.tests.results ? state.flex_search.tests.results.reduce((r, v) => ({...r, [v]: state.tests[v]}), {}) : state.tests
+  const tests = FilterSearchResults(state, 'tests')
   return h('div.scroll_container', [
     h('h2.panel_title', 'Tests'),
     SearchBar(send, 'tests'),
     h('div.scroll spaced', Object.entries(tests).map(v => {
       const test = v[0]
-      const parameters = {
+      const parameters = v[1].parameters && {
         initial: v[1].parameters.reduce((result, p) => ({...result, [p.name]: p.default}), {}),
         get: () => ({...parameters.initial, ...state.test_parameters[test]}),
         edit: () => 
@@ -27,13 +28,15 @@ export default (state, send) => {
       return TestEntry(
         state, 
         send, 
+        test,
         v[1],
         parameters,
         state.test_results.data[test],
         state.test_results.date[test],
         state.test_results.parameters[test],
+        state.test_results.approval[test],
         state.test_results.status[test] === 'loading',
-        {type: 'run_test', test, parameters: parameters.get()}
+        {type: 'run_test', test, parameters: parameters && parameters.get()}
       )
     }))
   ])

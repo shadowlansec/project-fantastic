@@ -22,6 +22,7 @@ const patch = init([
 let state = {
   flex_search: {actions: {}, tests: {}, commands: {}},
   search: {date: 15, show_external: true, connection_type: 'all', connection_state: []}, 
+  connection_search: {},
   tab: 'info', 
   selected: {}, 
   hovered: Hovered(), 
@@ -35,7 +36,7 @@ let state = {
 }
 let vnode = document.body
 
-const send = action=> {
+const send = action => {
   state = Update(state, action)
   vnode = patch(vnode, View(state, send))
   Effect(state,action,send) 

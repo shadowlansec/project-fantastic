@@ -1,13 +1,28 @@
 {
   "name": "fantastic-cli",
-  "version": "1.0.0",
-  "description": "Run PowerShell commands either locally or on a remote host",
+  "version": "0.3.4",
+  "description": "Command line tool to install the Fantastic network vizualisation and security app",
+  "main": "init.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "InfoSec Innovations",
+  "license": "Apache-2.0",
+  "bin": {
+    "init": "./init.js"
+  },
+  "gitHead": "79633df1f1f99a92538cf23ce9b2540b141fc9f1",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
-    "fantastic-utils": "file:../fantastic-utils"
+    "@infosecinnovations/fantastic-utils": "^0.3.4",
+    "fs-extra": "^9.0.1"
+  },
+  "homepage": "https://github.com/besimorhino/project-fantastic",
+  "bugs": "https://github.com/besimorhino/project-fantastic/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/besimorhino/project-fantastic.git"
   }
 }

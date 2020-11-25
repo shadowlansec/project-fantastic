@@ -4,8 +4,5 @@ node_modules
 *.db-journal
 *.db-shm
 *.db-wal
-config
-cert
 .current_version
-package-lock.json
 *.cpuprofile

@@ -4,14 +4,15 @@ const fetch_followup = action => fetch(`/action_followup?${GenerateQuery({
   action: action.action, 
   function: action.followups[action.followups.length - 1].followup, 
   node_id: action.node_id, 
-  label: action.followups[action.followups.length - 1].label
+  label: action.followups[action.followups.length - 1].label,
+  connection: action.connection
 })}`, {method: 'POST'})
 
 export default (state, action, send) => {
   fetch_followup(action)
   .then(res => res.json())
   .then(res => {
-    send({...action, type: 'action_followup_result', result: res.result, hostname: action.host, date: res.date})
+    send({...action, type: 'action_followup_result', result: res.result, hostname: action.host, date: res.date, filter: res.filter})
     if (action.followups && action.refresh && !res.result.length) { // TODO: maybe 0 results isn't always a good indication of needing to refresh?
       if (action.followups.length === 1) {
         send({

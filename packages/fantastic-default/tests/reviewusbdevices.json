@@ -1,0 +1,17 @@
+{
+  "name": "Review USB Devices",
+  "description": "Check USB devices connected to machines on this network.",
+  "hosts": ["local", "remote"],
+  "actions": [
+    {
+      "path": "getusbdevices"
+    }
+  ],
+  "pass": "review",
+  "quest": {
+    "explanation": "Look out for any devices you don't recognize.",
+    "selection": {
+      "age": {"h": 1}
+    }
+  }
+}

@@ -1,7 +1,7 @@
 {
-  "name": "fantastic-default",
-  "version": "1.0.0",
-  "description": "",
+  "name": "@infosecinnovations/fantastic-default",
+  "version": "0.3.5",
+  "description": "The default content for Fantastic",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -9,6 +9,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "InfoSec Innovations",
+  "gitHead": "79633df1f1f99a92538cf23ce9b2540b141fc9f1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/besimorhino/project-fantastic",
+  "bugs": "https://github.com/besimorhino/project-fantastic/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/besimorhino/project-fantastic.git"
+  }
 }

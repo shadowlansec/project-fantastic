@@ -1,0 +1,9 @@
+{
+  "packages": [
+    "packages/*",
+    "front",
+    "front/*",
+    "dev-test/*"
+  ],
+  "version": "0.3.7"
+}

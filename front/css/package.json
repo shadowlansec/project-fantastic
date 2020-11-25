@@ -1,10 +1,11 @@
 {
-  "name": "css",
-  "version": "1.0.0",
+  "name": "fantastic-css",
+  "version": "0.3.4",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
-    "css": "stylus output -o ../../server/src -w -m"
+    "css": "stylus output -o ../../packages/project-fantastic/src -w -m"
   },
   "author": "",
   "license": "ISC",

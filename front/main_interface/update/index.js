@@ -3,7 +3,7 @@ import FlexSearch from '../../common/update/flexsearch'
 import Hovered from '../defaults/hovered'
 import QuestResults from './questresults'
 import TestResults from './testresults'
-const CompareEvent = require('fantastic-utils/compareevent')
+const CompareEvent = require('@infosecinnovations/fantastic-utils/compareevent')
 
 export default (state, action) => {
   if (action.type == 'nodes') state.nodes = action.nodes
@@ -12,6 +12,8 @@ export default (state, action) => {
     state.selected.nodes = action.nodes
     state.selected.node = action.node
     state.selected.edge = action.edge
+    state.selected.connection = undefined
+    state.connection_search.expanded_connection = undefined
   }
   if (action.type == 'date') state.search.date = action.date
   if (action.type == 'connection_type') state.search.connection_type = action.connection_type
@@ -69,6 +71,24 @@ export default (state, action) => {
   }
   if (action.type == 'order_favorites') state.history.ordering = true
   if (action.type == 'favorites_ordered') state.history.ordering = false
+  if (action.type == 'review') {
+    if (!action.results) state.review = undefined
+    else {
+      state.review = {results: action.results, name: action.name, foldouts: {}, quest: action.quest, filter: action.results.some(v => v.filter) ? 'fail' : 'none'}
+    }
+  }
+  if (action.type == 'review_foldout') {
+    if (state.review) state.review.foldouts[action.node_id] = action.value
+  }
+  if (action.type == 'review_approval') {
+    if (action.quest) state.quest_results.approval[action.test] = action.approved
+    if (!action.quest || state.quest_results.date[action.test] === state.test_results[action.test]) state.test_results.approval[action.test] = action.approved // if the current test results have the same date as the quest results then it's assumed to be the same result set
+  }
+  if (action.type == 'post_review') state.review.loading = true
+  if (action.type == 'review_filter') state.review.filter = action.mode
+  if (action.type == 'connection') state.selected.connection = action.connection
+  if (action.type == 'expand_connection') state.connection_search.expanded_connection = action.connection
+  if (action.type == 'connection_search') state.connection_search[action.key] = action.value
   state = Common(state, action)
   state = FlexSearch(state, action)
   return state

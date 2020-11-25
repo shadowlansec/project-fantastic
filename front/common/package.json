@@ -1,6 +1,7 @@
 {
   "name": "common",
-  "version": "1.0.0",
+  "version": "0.3.4",
+  "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,8 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fantastic-utils": "file:../../packages/fantastic-utils",
+    "@infosecinnovations/fantastic-utils": "^0.3.4",
     "flexsearch": "^0.6.32",
     "snabbdom": "^1.0.1"
-  }
+  },
+  "gitHead": "964c580e20870e594383b07509bde13eb815df21"
 }

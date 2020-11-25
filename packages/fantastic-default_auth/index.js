@@ -1,18 +1,6 @@
-const {get, init} = require('./db')
-const CreateAccount = require('./accounts/createaccount')
 const Serve = require('./http/serve')
-const GetConfig = require('./utils/getconfig')
 
-init()
-.then(() => GetConfig())
-.then(config => get({table: 'users', columns: ['user_id'], conditions: {columns: {username: config.admin_account.username, role: 'admin'}, combine: 'OR'}})
-  .then(row => {
-    if (!row) return CreateAccount(config.admin_account.username, config.admin_account.password, 'admin')
-  })
-)
-.catch(err => console.log(err.message))
-
-const configure = app => {
+const initializeRoutes = async app => {
   app.get('/auth', require('./http/auth'))
   app.post('/auth/login', require('./http/login'))
   app.post('/auth/register', require('./http/register'))
@@ -33,4 +21,11 @@ const configure = app => {
   })
 }
 
-module.exports = {configure, verify: require('./accounts/verify'), invalidate: require('./accounts/invalidate'), getByID: require('./accounts/getbyid'), getByUsername: require('./accounts/getbyusername')}
+module.exports = {
+  initializeRoutes, 
+  configure: require('./configure'),
+  verify: require('./accounts/verify'), 
+  invalidate: require('./accounts/invalidate'), 
+  getByID: require('./accounts/getbyid'), 
+  getByUsername: require('./accounts/getbyusername')
+}

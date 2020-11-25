@@ -1,0 +1,13 @@
+{
+  "name": "Kill Connection Process",
+  "description": "Stop the process that owns this connection. You may still see the connection after performing this action because the database contains historic information.",
+  "hosts": ["local", "remote"],
+  "role": "elevated",
+  "target": "connection",
+  "functions": {
+    "run": {
+      "command": "Stop-Process -ID $process -Force",
+      "method": "invoke"
+    }
+  }
+}

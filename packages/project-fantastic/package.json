@@ -1,0 +1,38 @@
+{
+  "name": "@infosecinnovations/project-fantastic",
+  "version": "0.3.7",
+  "description": "A GUI tool to visualize computer networks and perform security checks and improvements.",
+  "main": "index.js",
+  "author": "InfoSec Innovations",
+  "dependencies": {
+    "@infosecinnovations/fantastic-auth_factory": "^0.3.4",
+    "@infosecinnovations/fantastic-db": "^0.3.4",
+    "@infosecinnovations/fantastic-help": "^0.3.4",
+    "@infosecinnovations/fantastic-powershell": "^0.3.5",
+    "@infosecinnovations/fantastic-utils": "^0.3.4",
+    "decache": "^4.6.0",
+    "fs-extra": "^8.1.0",
+    "httpolyglot": "^0.1.2",
+    "is-admin": "^3.0.0",
+    "markdown-it": "^10.0.0",
+    "svgson": "^4.0.0",
+    "uWebSockets.js": "github:uNetworking/uWebSockets.js#binaries",
+    "vm2": "^3.9.2",
+    "xml2js": "^0.4.23"
+  },
+  "bin": {
+    "fantastic": "./index.js",
+    "fantastic-upgrade": "./bin/upgrade.js"
+  },
+  "gitHead": "79633df1f1f99a92538cf23ce9b2540b141fc9f1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/besimorhino/project-fantastic",
+  "bugs": "https://github.com/besimorhino/project-fantastic/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/besimorhino/project-fantastic.git"
+  }
+}

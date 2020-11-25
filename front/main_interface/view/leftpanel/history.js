@@ -1,5 +1,5 @@
 import {h} from 'snabbdom/h'
-const CompareEvent = require('fantastic-utils/compareevent')
+const CompareEvent = require('@infosecinnovations/fantastic-utils/compareevent')
 
 const headers = {
   action: 'Run Action',
@@ -16,7 +16,7 @@ const log_name = (state, log) => {
 }
 
 const log_content = (state, log) => {
-  if (log.event_type == 'test') {
+  if (log.event_type == 'test' && log.parameters) {
     const parameters = JSON.parse(log.parameters)
     return [
       'Parameters used:',
